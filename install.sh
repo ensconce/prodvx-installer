@@ -171,4 +171,14 @@ X-GNOME-Autostart-enabled=true
 Categories=
 EOF
 
+echo "Testing LED color strip."
+
+wget http://localhost:8000/red -O /dev/null
+sleep 2
+wget http://localhost:8000/green -O /dev/null
+sleep 2
+wget http://localhost:8000/blue -O /dev/null
+sleep 2
+wget http://localhost:8000/off -O /dev/null
+
 echo "Setup complete. Please restart your system."
