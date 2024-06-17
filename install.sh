@@ -140,11 +140,11 @@ sudo systemctl start ledctl.service
 sudo systemctl status ledctl.service
 
 # Create chromium script
-echo "Updating Chromium script..."
-if grep -q '^CHROME_EXTRA_ARGS=' /usr/bin/chromium; then
-    sudo sed -i 's|^CHROME_EXTRA_ARGS=.*|CHROME_EXTRA_ARGS="--use-gl=egl --disable-web-security --user-data-dir=/home/linaro/chromium-data-dir --no-sandbox --start-fullscreen --gpu-sandbox-start-early --ignore-gpu-blacklist --ignore-gpu-blocklist --enable-remote-extensions --no-default-browser-check --enable-webgpu-developer-features --enable-unsafe-webgpu --show-component-extension-options --enable-gpu-rasterization --no-default-browser-check --disable-pings --media-router=0 --enable-accelerated-video-decode --enable-features=VaapiVideoDecoder,VaapiVideoEncoder --test-type https://play.onedisplay.se"|' /usr/bin/chromium
+echo "Updating Chromium wrapper..."
+if grep -q '^CHROME_EXTRA_ARGS=' /usr/lib/chromium/chromium-wrapper; then
+    sudo sed -i 's|^CHROME_EXTRA_ARGS=.*|CHROME_EXTRA_ARGS="--use-gl=egl --disable-web-security --user-data-dir=/home/linaro/chromium-data-dir --no-sandbox --start-fullscreen --gpu-sandbox-start-early --ignore-gpu-blacklist --ignore-gpu-blocklist --enable-remote-extensions --no-default-browser-check --enable-webgpu-developer-features --enable-unsafe-webgpu --show-component-extension-options --enable-gpu-rasterization --no-default-browser-check --disable-pings --media-router=0 --enable-accelerated-video-decode --enable-features=VaapiVideoDecoder,VaapiVideoEncoder --test-type https://play.onedisplay.se"|' /usr/lib/chromium/chromium-wrapper
 else
-    echo 'CHROME_EXTRA_ARGS="--use-gl=egl --disable-web-security --user-data-dir=/home/linaro/chromium-data-dir --no-sandbox --start-fullscreen --gpu-sandbox-start-early --ignore-gpu-blacklist --ignore-gpu-blocklist --enable-remote-extensions --no-default-browser-check --enable-webgpu-developer-features --enable-unsafe-webgpu --show-component-extension-options --enable-gpu-rasterization --no-default-browser-check --disable-pings --media-router=0 --enable-accelerated-video-decode --enable-features=VaapiVideoDecoder,VaapiVideoEncoder --test-type https://play.onedisplay.se"' | sudo tee -a /usr/bin/chromium > /dev/null
+    echo 'CHROME_EXTRA_ARGS="--use-gl=egl --disable-web-security --user-data-dir=/home/linaro/chromium-data-dir --no-sandbox --start-fullscreen --gpu-sandbox-start-early --ignore-gpu-blacklist --ignore-gpu-blocklist --enable-remote-extensions --no-default-browser-check --enable-webgpu-developer-features --enable-unsafe-webgpu --show-component-extension-options --enable-gpu-rasterization --no-default-browser-check --disable-pings --media-router=0 --enable-accelerated-video-decode --enable-features=VaapiVideoDecoder,VaapiVideoEncoder --test-type https://play.onedisplay.se"' | sudo tee -a /usr/lib/chromium/chromium-wrapper > /dev/null
 fi
 
 # Create autostart entry for Chromium
