@@ -4,13 +4,8 @@
 echo "Updating and upgrading system..."
 sudo apt update
 sudo apt upgrade -y
-sudo apt install nano systemd python3 python3-pip -y
+sudo apt install nano systemd python3 python3-pip unclutter -y
 sudo apt autoremove -y
-#sudo reboot
-
-# Pause the script to allow the system to reboot
-#echo "System is rebooting..."
-#sleep 1m
 
 # Check installed versions
 echo "Checking installed versions..."
@@ -155,6 +150,20 @@ Name=Chromium
 Exec=chromium
 Terminal=false
 Type=Application
+Categories=
+EOF
+
+# Create autostart entry for Unclutter
+echo "Creating autostart entry for Chromium..."
+cat << 'EOF' | sudo tee /etc/xdg/autostart/unclutter.desktop > /dev/null
+[Desktop Entry]
+Name=Unclutter
+Exec=unclutter -idle 0
+Terminal=false
+Type=Application
+Hidden=false
+NoDisplay=false
+X-GNOME-Autostart-enabled=true
 Categories=
 EOF
 
