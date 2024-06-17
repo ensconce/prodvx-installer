@@ -96,8 +96,12 @@ def lamp_off_all():
 
 def main():
     print("ProDVX LED Control")
-    while True:
-        pass
+    # Use an event to block the main thread
+    stop_event = threading.Event()
+    try:
+        stop_event.wait()  # This will block indefinitely until the event is set
+    except KeyboardInterrupt:
+        print("Stopping main thread.")
 
 if __name__ == "__main__":
     run_server_in_thread()
