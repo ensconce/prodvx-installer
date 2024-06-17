@@ -154,7 +154,7 @@ Categories=
 EOF
 
 # Create autostart entry for Unclutter
-echo "Creating autostart entry for Chromium..."
+echo "Creating autostart entry for Unclutter..."
 cat << 'EOF' | sudo tee /etc/xdg/autostart/unclutter.desktop > /dev/null
 [Desktop Entry]
 Name=Unclutter
