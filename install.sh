@@ -6,6 +6,9 @@
 # And time isn't really on my side.
 # /Björn Ringmann
 
+# Setting correct timezone
+sudo timedatectl set-timezone Europe/Stockholm
+
 # Update & Upgrade system
 echo "Updating and upgrading system..."
 sudo apt update
