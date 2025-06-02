@@ -13,7 +13,7 @@ sudo timedatectl set-timezone Europe/Stockholm
 echo "Updating and upgrading system..."
 sudo apt update
 sudo apt upgrade -y
-sudo apt install nano systemd gcc python3-dev python3 python3-pip unclutter -y
+sudo apt install cron nano systemd gcc python3-dev python3 python3-pip unclutter -y
 sudo apt autoremove -y
 
 # Check installed versions
@@ -21,6 +21,24 @@ echo "Checking installed versions..."
 python3 --version
 pip3 -V
 sudo pip install psutil
+
+# Create cronjob to clear logs
+echo "Creating log purge script..."
+cat << 'EOF' > /root/clear-logs.sh
+#!/bin/bash
+# Clear selected log files
+: > /var/log/syslog
+: > /var/log/kern.log
+: > /var/log/daemon.log
+: > /var/log/messages
+EOF
+sudo chmod +x /root/clear-logs.sh
+
+echo "Creating cron to purge logs..."
+cat << 'EOF' > /var/spool/cron/crontabs/root
+0 1 * * * /root/clear-logs.sh
+EOF
+
 
 # Create pyled script
 echo "Creating pyled.py script..."
